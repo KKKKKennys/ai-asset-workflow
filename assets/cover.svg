@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="720" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">AI Asset Workflow — v0.1.0-dev prototype</title>
+  <desc id="desc">深蓝色流程示意。Claude Code 控制器连接 Codex、概念图与人工审批，再进入 Blender MCP 和交付检查。原型开发中，概念图待审，Blender MCP 离线。此图由代码绘制，不是渲染成果。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b192d"/>
+      <stop offset="1" stop-color="#030811"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="70%" cy="15%" r="80%">
+      <stop stop-color="#16406d" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#06101f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#4e93ed" stop-opacity=".2"/>
+      <stop offset=".5" stop-color="#8acbff"/>
+      <stop offset="1" stop-color="#4e93ed" stop-opacity=".2"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#9bcaff" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <rect width="1440" height="720" fill="url(#bg)"/>
+  <rect width="1440" height="720" fill="url(#halo)"/>
+  <rect width="1440" height="720" fill="url(#grid)"/>
+  <path d="M72 64H1368M72 656H1368" stroke="#2b415b" stroke-width="1"/>
+  <path d="M72 64H144" stroke="#8cc7ff" stroke-width="3"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="72" y="108" fill="#9cbbd9" font-size="14" letter-spacing="3">LI KENG / KENNY</text>
+    <rect x="1120" y="85" width="248" height="34" rx="17" fill="#0d233b" stroke="#355775"/>
+    <circle cx="1140" cy="102" r="3" fill="#91c7ff"/>
+    <text x="1154" y="107" fill="#bedfff" font-size="12" letter-spacing="1.2">v0.1.0-dev / PROTOTYPE</text>
+
+    <text x="68" y="216" fill="#f0f7ff" font-size="76" font-weight="600" letter-spacing="-3">AI Asset Workflow</text>
+    <text x="74" y="263" fill="#99b5d2" font-size="21" letter-spacing=".3">From concept to editable asset, with human approval.</text>
+    <text x="74" y="306" fill="#7598ba" font-size="14" letter-spacing="1.2">CLAUDE CODE CONTROLLER</text>
+    <path d="M329 301H366" stroke="#52799e"/>
+    <text x="382" y="306" fill="#9ec6ed" font-size="14" letter-spacing="1.2">CODEX CLI / GPT-6 ASTRA</text>
+
+    <path d="M72 372H1368" stroke="url(#line)"/>
+    <g fill="#0a1728" stroke="#2e4c6d">
+      <rect x="72" y="410" width="278" height="156" rx="14"/>
+      <rect x="728" y="410" width="290" height="156" rx="14"/>
+      <rect x="1058" y="410" width="310" height="156" rx="14"/>
+    </g>
+    <rect x="390" y="410" width="298" height="156" rx="14" fill="#112944" stroke="#7ebfff" stroke-width="1.5"/>
+    <g stroke="#507493" fill="none" stroke-width="1.5">
+      <path d="M354 488H380m-6-5 6 5-6 5"/>
+      <path d="M692 488H718m-6-5 6 5-6 5"/>
+      <path d="M1022 488H1048m-6-5 6 5-6 5"/>
+    </g>
+    <text x="96" y="442" fill="#7294b5" font-size="12" letter-spacing="2">01 / GENERATE</text>
+    <text x="96" y="483" fill="#e4f0ff" font-size="24" font-weight="500">Concept images</text>
+    <text x="96" y="518" fill="#98b4cd" font-size="14">Native image tool</text>
+    <text x="96" y="542" fill="#6f91b3" font-size="13">Generated / awaiting approval</text>
+
+    <text x="414" y="442" fill="#a4d4ff" font-size="12" letter-spacing="2">02 / HUMAN DECISION</text>
+    <text x="414" y="483" fill="#f0f7ff" font-size="24" font-weight="500">Approve this image</text>
+    <text x="414" y="518" fill="#b0d1ed" font-size="14">Candidate hash + exact words</text>
+    <text x="414" y="542" fill="#8ab9e2" font-size="13">Required before production</text>
+
+    <text x="752" y="442" fill="#7294b5" font-size="12" letter-spacing="2">03 / BUILD</text>
+    <text x="752" y="483" fill="#e4f0ff" font-size="24" font-weight="500">Blender MCP</text>
+    <text x="752" y="518" fill="#98b4cd" font-size="14">Editable task outputs</text>
+    <text x="752" y="542" fill="#d1b180" font-size="13">Connection unavailable</text>
+
+    <text x="1082" y="442" fill="#7294b5" font-size="12" letter-spacing="2">04 / INSPECT</text>
+    <text x="1082" y="483" fill="#e4f0ff" font-size="24" font-weight="500">Review delivery</text>
+    <text x="1082" y="518" fill="#98b4cd" font-size="14">Files / hashes / visual checks</text>
+    <text x="1082" y="542" fill="#6f91b3" font-size="13">Human acceptance required</text>
+
+    <text x="74" y="618" fill="#7c9cbb" font-size="13" letter-spacing=".5">WORKFLOW DIAGRAM / NO ASSET RENDER / END-TO-END RUN UNVERIFIED</text>
+    <text x="1368" y="688" text-anchor="end" fill="#587896" font-size="12" letter-spacing="1">ai-asset-workflow</text>
+  </g>
+</svg>
