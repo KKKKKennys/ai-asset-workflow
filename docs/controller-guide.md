@@ -1,6 +1,8 @@
 # 控制器指南
 
-本指南面向用户授权的 Claude Code 控制器，也可由用户手动执行。v0.1.0-dev 核心 CLI 已实现；本机仅发现 Claude 桌面应用二进制，未找到可用于无界面控制的全局 Claude Code CLI，未完成 Claude 主导执行测试。用户可让自己的 Claude Code 桌面端读取仓库的 [CLAUDE.md](../CLAUDE.md) 与本指南，再在具备对应权限的环境中操作。
+本指南面向用户授权的 Claude Code 控制器，也可手动执行。v0.1.0-dev 核心 CLI 已实现，Claude Code 主导的完整串联尚未验证。用户可让自己的 Claude Code 读取本指南，在具备对应工具权限的环境中操作。
+
+展示中的目标分工是：Codex CLI **编辑 ComfyUI 批量生图工作流，或调用 GPT Image**；ComfyUI / GPT Image **按设定批量生成候选图片**。当前版本仅接入 Codex 原生图像工具，尚无 ComfyUI 或独立图像 API 适配器。下列命令说明现有实现。
 
 ## 先确认本次任务边界
 
@@ -8,7 +10,7 @@
 
 原生 Codex 图像工具使用已有登录与工具权限，无需为本流程另填 API key。此前已确认 `codex exec` 可见 `image_gen`，但工具未暴露实际图像模型标识。记录来源为 `codex-imagegen`；不能根据执行代理 `gpt-6-astra` 推断图像模型，也不能标成 GPT-Image2.6。
 
-`equipment-case`、`inspection-lamp`、`control-console` 的真实概念图均已生成并查看，原生 Codex CLI worker 经任务提示词实测退出码为 0，实际图像模型标识记录为 `null`。三图仍未获用户批准，也不公开。`generate-concepts` 封装尚未实时调用，合成测试计划不等于实测结果。Blender MCP 目前不可用，未验证 Blender 制作。
+`equipment-case`、`inspection-lamp`、`control-console` 的真实概念图均已生成并查看，原生 Codex CLI worker 经任务提示词实测退出码为 0，实际图像模型标识记录为 `null`。三图仍未获用户批准，也不公开。`generate-concepts` 封装的合成协议测试已有记录，尚未再次发起真实生图。Blender 制作未验证；执行前需检查实际 MCP 连接。以上为既有记录，本次未重新实测。
 
 ## 命令约定
 

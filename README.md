@@ -1,8 +1,8 @@
-<p align="center"><img src="assets/cover.svg" alt="AI Asset Workflow：深蓝流程示意，概念图经人工审批后进入 Blender 资产制作；v0.1.0-dev 原型开发中。" width="100%"></p>
+<p align="center"><img src="assets/cover.svg" alt="Agent Asset Workflow：由我定方向和确认图片，Claude Code 统筹，Codex 调用生图与三维工具；完整流程待验证。" width="100%"></p>
 
 # ai-asset-workflow
 
-**把创意、人工判断与可追溯的资产制作接起来。** 目标是由用户授权的 Claude Code 控制器编排 Codex CLI GPT-6 Astra，生成概念图；用户明确批准具体图片后，再通过已配置的 Blender MCP 制作可编辑资产，检查并验收交付。
+**我定方向，Agent 协同制作。** 我与 Claude Code 沟通，由它拆解任务、统筹 Codex CLI 和制作工具。先批量生成候选图片，经我确认后，再通过 Codex 与 MCP 将制作任务交给 Blender，最后由我检查成品。
 
 **v0.1.0-dev · 原型开发中 · 作者 Li Keng / Kenny。** 本仓库提供 Python 标准库 CLI、控制器指引与技能入口。封面是代码绘制的流程示意。
 
@@ -16,22 +16,27 @@
 | `generate-concepts` 封装 | 已实现，合成协议测试通过 | 底层原生 worker 已实测；封装未再次发起真实生图 |
 | 图像模型标识 | 实际标识未暴露，记录为 `null` | 不标为 GPT-Image2.6；`gpt-6-astra` 是执行代理标识 |
 | Claude Code 控制器 | 指引可由用户的 Claude Code 桌面端加载 | 已提供桌面端项目入口与调度指引；Claude Code 主导的完整链路待验证 |
-| Blender MCP | 当前连接不可用 | 未验证端到端 Blender 制作或交付；恢复连接后才可执行相应阶段 |
-| ComfyUI / 图像 API 适配器 | v0.1.0-dev 未实现 | 不提供替代后端 |
+| Blender MCP | 制作任务包已提供，完整制作未验证 | 执行前需检查实际连接；既有记录没有 Blender 端到端交付结果 |
+| ComfyUI / GPT Image 接入 | 流程设计中的两种生图方式 | v0.1.0-dev 尚未实现 ComfyUI 或独立图像 API 适配器 |
 
-## 工作流
+## 工作流设计
 
-```text
-用户授权 → Claude Code 控制器 → Codex CLI / GPT-6 Astra
-                                      ↓
-                              原生图像工具 → 候选图 + 哈希
-                                                     ↓
-                                         用户明确批准这一张图
-                                                     ↓
-                                Blender MCP → 模型检查 → 交付检查
-                                                                ↓
-                                                          用户验收完成
-```
+以下分工与[作品集网站](https://kkkkkennys.github.io/kenny-ai-art/#ai-workflow)、简历及作品集 PDF 一致。它描述目标流程；当前程序与实测范围见上表。
+
+| 节点 | 负责什么 |
+| --- | --- |
+| 01 · 我 | 提出需求与创作方向 |
+| 02 · Claude Code | 拆解需求，统筹任务 |
+| 03 · Codex CLI | 编辑 ComfyUI 批量生图工作流，或调用 GPT Image |
+| 04 · ComfyUI / GPT Image | 按设定批量生成候选图片 |
+| 05 · 我 | 审核图片，确认风格；不满意则反馈给 Claude Code 调整 |
+| 06 · Claude Code | 接收确认，派发三维制作任务 |
+| 07 · Codex CLI | 执行三维制作任务 |
+| 08 · MCP 连接 | 把任务传给 Blender |
+| 09 · Blender | 建模、材质与输出 |
+| 10 · 我 | 查看成果，确认交付 |
+
+**已实测的是 Codex 原生生图与候选图片登记。** 上图中的 ComfyUI / GPT Image 接入，以及 Claude Code 主导的完整三维串联仍待验证；现有 CLI 命令使用原生图像工具，不会自动切换到这两个后端。
 
 选择主题不构成图片批准。模型与交付阶段绑定获批参考图的内容哈希；更换参考图需重新审批。
 
@@ -93,7 +98,7 @@ python -m workflow status --project runs/sci-lab/project.json
 
 ## 验证记录
 
-运行 `python -m unittest discover -s tests -v`。本机 53 项测试中 51 项通过、2 项因 Windows 文件符号链接权限跳过；目录 junction 检查通过。它们验证任务状态、审批、哈希、路径、错误与超时处理，不代表 Blender 几何或渲染质量通过。真实原生生图 worker 已生成三张设计图并完成图像登记。详细边界见 [验证记录](docs/validation.md)。
+2026-11-07 的既有验证记录：`python -m unittest discover -s tests -v` 共 53 项，51 项通过、2 项因 Windows 文件符号链接权限跳过；目录 junction 检查通过。本次仅同步文档，未重新运行这些测试。它们验证任务状态、审批、哈希、路径、错误与超时处理，不代表 Blender 几何或渲染质量通过。真实原生生图 worker 已生成三张设计图并完成图像登记。详细边界见 [验证记录](docs/validation.md)。
 
 ## 文档与依赖
 
